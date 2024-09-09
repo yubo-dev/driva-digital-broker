@@ -7,6 +7,7 @@ import { loanApplicationSchema } from "../../schemas/loanSchemas";
 import { LenderOffer, LoanFormInputs } from "../../interfaces/loan";
 import FormField from "../molecules/FormField";
 import LenderOfferItem from "../LenderOfferItem";
+import backendUrl from "../../config";
 
 const LoanForm: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -26,7 +27,7 @@ const LoanForm: React.FC = () => {
   const onSubmit = async (data: LoanFormInputs) => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:8080/api/loan-offers", {
+      const response = await fetch(backendUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

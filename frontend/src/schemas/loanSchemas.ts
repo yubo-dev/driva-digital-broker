@@ -49,27 +49,36 @@ const personalDetailsSchema = z
 
 const loanDetailsSchema = z
   .object({
-    vehiclePrice: z
-      .number({
-        required_error: "Vehicle price is required",
-      })
-      .min(2000, "Vehicle price must be at least $2000"),
-    deposit: z
-      .number({
-        required_error: "Deposit is required",
-      })
-      .min(0, "Deposit cannot be less than $0"),
+    vehiclePrice: z.preprocess(
+      (value) => (Number.isNaN(value) ? undefined : Number(value)),
+      z
+        .number({
+          required_error: "Vehicle price is required", // Custom error message for required fields
+        })
+        .min(2000, "Vehicle price must be at least $2000")
+    ),
+    deposit: z.preprocess(
+      (value) => (Number.isNaN(value) ? undefined : Number(value)),
+      z
+        .number({
+          required_error: "Deposit is required",
+        })
+        .min(0, "Deposit cannot be less than $0")
+    ),
     loanPurpose: z
       .union([z.enum(LoanPurposeEnum), z.literal("")])
       .refine((value) => value !== "", {
         message: "Loan purpose must be selected",
       }),
-    loanTerm: z
-      .number({
-        required_error: "Loan term is required",
-      })
-      .min(1, "Loan term must be at least 1 year")
-      .max(7, "Loan term cannot exceed 7 years"),
+    loanTerm: z.preprocess(
+      (value) => (Number.isNaN(value) ? undefined : Number(value)),
+      z
+        .number({
+          required_error: "Loan term is required",
+        })
+        .min(1, "Loan term must be at least 1 year")
+        .max(7, "Loan term cannot exceed 7 years")
+    ),
   })
   .superRefine((data, ctx) => {
     // Ensure deposit does not exceed vehicle price

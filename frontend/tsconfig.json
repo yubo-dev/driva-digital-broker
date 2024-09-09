@@ -3,5 +3,10 @@
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-  ]
+  ],
+  "compilerOptions": {
+    "module": "CommonJS", // or ESNext if using ESM
+    "target": "ES6", // or your preferred version
+    "esModuleInterop": true
+  }
 }
