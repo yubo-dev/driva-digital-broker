@@ -4,6 +4,11 @@ export enum EmploymentStatus {
   UNEMPLOYED = "Unemployed",
 }
 
+export enum LoanPurpose {
+  PERSONAL_USE = "Personal Use",
+  BUSINESS_USE = "Business Use",
+}
+
 export interface Lender {
   name: string;
   interestRate: number;
@@ -18,14 +23,15 @@ interface LoanDetails {
   vehiclePrice: number;
   deposit: number;
   loanTerm: number;
+  loanPurpose: LoanPurpose;
 }
 
 interface PersonalDetails {
-  firsName: string;
+  firstName: string;
   lastName: string;
   email: string;
   employmentStatus: EmploymentStatus;
-  employer?: string;
+  employerName?: string;
 }
 
 export interface LoanApplication {
