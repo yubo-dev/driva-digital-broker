@@ -82,10 +82,11 @@ const loanDetailsSchema = z
     }
 
     // Ensure vehiclePrice - deposit (loan amount) is greater than $2000
-    if (data.vehiclePrice - data.deposit < 2000) {
+    if (data.vehiclePrice - data.deposit <= 2000) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
-        message: "Loan amount must be greater than $2000",
+        message:
+          "Loan amount (vehicle price - deposit) must be greater than $2000",
         path: ["deposit"],
       });
     }

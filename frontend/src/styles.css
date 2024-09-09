@@ -1,6 +1,6 @@
 .app {
   font-family: Arial, sans-serif;
-  max-width: 600px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -28,8 +28,19 @@ input {
   border-radius: 4px;
 }
 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Hide the spinner in Firefox */
+}
+
 button {
   padding: 10px 15px;
+  margin: 10px;
   background-color: #4caf50;
   color: white;
   border: none;
@@ -44,4 +55,37 @@ button:hover {
 .error {
   color: red;
   font-size: 0.85em;
+}
+
+.loan-form-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.loan-form {
+  flex: 1;
+  max-width: 600px;
+}
+
+.loan-offers {
+  flex: 0 1 300px;
+  max-width: 300px;
+  padding-left: 20px;
+  border-left: 1px solid #ccc;
+}
+
+.loan-offers h3 {
+  margin-top: 0;
+}
+
+.loan-offers ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.loan-offers li {
+  margin-bottom: 10px;
+  font-size: 0.9em;
 }

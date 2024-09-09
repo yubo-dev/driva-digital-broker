@@ -33,10 +33,12 @@ router.post(
 
       res.json({ lenders: lenderOffers });
     } catch (e) {
+      const error = `Error occurred when processing the loan application - ${
+        (e as Error).message
+      }`;
+      console.error(error);
       res.status(500).json({
-        error: `Error occurred when processing the loan application - ${
-          (e as Error).message
-        }`,
+        error,
       });
     }
   }

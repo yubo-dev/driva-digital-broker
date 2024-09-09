@@ -19,3 +19,10 @@ export interface LoanFormInputs {
     loanTerm: number;
   };
 }
+
+export interface LenderOffer {
+  name: string;
+  monthlyRepayment: number;
+  interestRate: number;
+  processingFee: number;
+}
