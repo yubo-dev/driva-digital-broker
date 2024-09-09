@@ -1,5 +1,5 @@
 import express from "express";
-import loanOffersRouter from "./routes/loanOffers";
+import loanOffersRouter from "./routes/loan-offers";
 
 const app = express();
 

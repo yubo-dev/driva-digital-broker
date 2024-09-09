@@ -1,8 +1,4 @@
-export interface Lender {
-  name: string;
-  interestRate: number;
-  processingFee: number;
-}
+import { Lender } from "./interfaces/loan";
 
 export const lenders: Lender[] = [
   { name: "Lender A", interestRate: 5.7, processingFee: 20 },
