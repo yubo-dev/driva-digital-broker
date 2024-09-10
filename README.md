@@ -112,11 +112,15 @@ Ensure Docker is installed in your machine. To run both the **frontend and backe
 - **API Communication**: The frontend and backend communicate via REST API for submitting loan applications and receiving loan offers.
 - **Testing**: The backend uses Jest for unit and integration tests, and Cypress is used for frontend E2E testing.
 
+<br>
+
 ## Design Choices
 
 - **Frontend Design**: The atomic design pattern is applied, separating components into reusable atomic units such as `InputField`, `SelectField`, and `Button`. This ensures modularity and reusability across the application.
 - **Backend Design**: The loan offers are calculated using the amortization formula based on user input, and the lenders' data is maintained as a constant list. Given the nature of this project, no database is used. We can integrate with relational DB considering the future scalability.
 - **Validation**: Zod was chosen for both frontend and backend for its seamless TypeScript integration, allowing for strong type inference and consistent validation. This ensures uniform data validation across the entire application. If I have more time, 
+
+<br>
 
 ## Future Improvements
 
