@@ -109,7 +109,7 @@ describe("POST /api/loan-offers", () => {
       .send(invalidLoanApplication);
     expect(response.status).toBe(400);
     expect(response.body.message).toBe(
-      "Loan amount must be greater than $2000"
+      "Loan amount (vehicle price - deposit) must be greater than $2000"
     );
   });
 
