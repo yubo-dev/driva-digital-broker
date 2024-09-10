@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Button from "../atoms/Button";
 import SelectField from "../molecules/SelectField";
 import { loanApplicationSchema } from "../../schemas/loanSchemas";
-import { LenderOffer, LoanFormInputs } from "../../interfaces/loan";
-import FormField from "../molecules/FormField";
+import {
+  EmploymentStatus,
+  LenderOffer,
+  LoanFormInputs,
+} from "../../interfaces/loan";
+import InputField from "../molecules/InputField";
 import LenderOfferItem from "../LenderOfferItem";
 import backendUrl from "../../config";
 
@@ -19,10 +23,20 @@ const LoanForm: React.FC = () => {
     handleSubmit,
     formState: { errors },
     watch,
+    setValue,
     reset,
   } = useForm<LoanFormInputs>({
     resolver: zodResolver(loanApplicationSchema),
   });
+
+  const employmentStatus = watch("personalDetails.employmentStatus");
+
+  // Reset the Employer Name to undefined, when Employment Status is not 'Employed'
+  useEffect(() => {
+    if (employmentStatus !== EmploymentStatus.EMPLOYED) {
+      setValue("personalDetails.employerName", undefined);
+    }
+  }, [employmentStatus, setValue]);
 
   const onSubmit = async (data: LoanFormInputs) => {
     setLoading(true);
@@ -61,17 +75,17 @@ const LoanForm: React.FC = () => {
     <div className="loan-form-container">
       <form onSubmit={handleSubmit(onSubmit)} className="loan-form">
         <h2>Personal Details</h2>
-        <FormField
+        <InputField
           label="First Name"
           register={register("personalDetails.firstName")}
           error={errors.personalDetails?.firstName?.message}
         />
-        <FormField
+        <InputField
           label="Last Name"
           register={register("personalDetails.lastName")}
           error={errors.personalDetails?.lastName?.message}
         />
-        <FormField
+        <InputField
           label="Email"
           type="email"
           register={register("personalDetails.email")}
@@ -90,7 +104,7 @@ const LoanForm: React.FC = () => {
         />
 
         {watch("personalDetails.employmentStatus") === "Employed" && (
-          <FormField
+          <InputField
             label="Employer Name"
             register={register("personalDetails.employerName")}
             error={errors.personalDetails?.employerName?.message}
@@ -98,7 +112,7 @@ const LoanForm: React.FC = () => {
         )}
 
         <h2>Loan Details</h2>
-        <FormField
+        <InputField
           label="Vehicle Price"
           type="number"
           register={register("loanDetails.vehiclePrice", {
@@ -106,7 +120,7 @@ const LoanForm: React.FC = () => {
           })}
           error={errors.loanDetails?.vehiclePrice?.message}
         />
-        <FormField
+        <InputField
           label="Deposit"
           type="number"
           register={register("loanDetails.deposit", { valueAsNumber: true })}
@@ -121,7 +135,7 @@ const LoanForm: React.FC = () => {
             { value: "Business Use", label: "Business Use" },
           ]}
         />
-        <FormField
+        <InputField
           label="Loan Term (years)"
           type="number"
           register={register("loanDetails.loanTerm", { valueAsNumber: true })}

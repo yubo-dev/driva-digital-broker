@@ -2,18 +2,18 @@ import React from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 import Input from "../atoms/Input";
 
-interface FormFieldProps {
+interface InputFieldProps {
   label: string;
   error?: string;
   register: UseFormRegisterReturn;
   type?: string;
 }
 
-const FormField: React.FC<FormFieldProps> = ({
+const InputField: React.FC<InputFieldProps> = ({
   label,
   error,
   register,
   type,
 }) => <Input label={label} register={register} error={error} type={type} />;
 
-export default FormField;
+export default InputField;
