@@ -16,7 +16,7 @@ Ensure Docker is installed in your machine. To run both the **frontend and backe
    cd driva-digital-broker
    ```
 
-2. **Build and Start the Docker containers for both frontend and backend:**
+2. **Build and Start the Docker containers for both frontend and backend in root folder:**
    ```bash
    npm run docker:build
    ```
@@ -78,7 +78,7 @@ Ensure Docker is installed in your machine. To run both the **frontend and backe
 ## Running Tests
 
 1. **Backend Tests (Unit and Integration Tests):**
-   - Navigate to the `/backend` directory:
+   - Navigate to the `/backend` directory, ensure the dependencies are all installed:
      ```bash
      cd backend
      ```
@@ -88,7 +88,7 @@ Ensure Docker is installed in your machine. To run both the **frontend and backe
      ```
 
 2. **Frontend Tests (Cypress E2E Testing):**
-   - Navigate to the `/frontend` directory:
+   - Navigate to the `/frontend` directory, ensure the dependencies are all installed:
      ```bash
      cd frontend
      ```
